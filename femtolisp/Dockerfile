@@ -12,9 +12,6 @@ RUN make
 RUN cp -p flisp flisp.boot /usr/local/bin/
 
 FROM debian:buster-slim
-RUN apt-get update && apt-get -y --no-install-recommends install \
-      libncurses6 \
- && rm -rf /var/lib/apt/lists/*
 COPY --from=build /usr/local/ /usr/local/
 RUN ln -s flisp /usr/local/bin/scheme-banner
 CMD ["scheme-banner"]
